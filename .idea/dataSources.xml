@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="1933633183">
+  <component name="DataSourceManagerImpl" format="xml" hash="4265478353">
     <data-source source="LOCAL" name="Rails similarityds: development" uuid="9496e193-eff7-4608-bd53-32af4ad2aa25">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
