@@ -9,6 +9,7 @@ class ProfileController < ApplicationController
 # @TODO view cleanups
 # @TODO i18n
 # @TODO add tests
+# @TODO add avatars
 
   def create
     @user = User.new(user_params)
@@ -51,8 +52,10 @@ class ProfileController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:email, :password, :first_name, :last_name, :nickname,
-                                 :use_full_name, :incl_in_thesis, :incl_in_rankings)
+    params.require(:user).permit(:email, :password, :password_confirmation,
+                                 :first_name, :last_name, :nickname,
+                                 :use_full_name, :incl_in_thesis,
+                                 :incl_in_rankings)
   end
 
 end

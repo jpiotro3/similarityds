@@ -1,4 +1,5 @@
-<h1>Registration Form</h1>
+<!-- @TODO add role -->
+<h1>New User</h1>
 <%= form_for @user, url: new_user_path do |f| %>
   <%= f.email_field :email, :placeholder => 'e-mail (it will be never shared)' %>
   <%= f.password_field :password, :placeholder => 'password' %>
