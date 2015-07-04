@@ -1,5 +1,5 @@
 <div class="page-header">
-  <h1>User profile for <%= @user.email %></h1>
+  <h1>Your profile</h1>
 </div>
 <%= @user.email %>
 <%= @user.first_name %> <%= @user.last_name %>
@@ -8,7 +8,7 @@ Include me in acknowledgments (full name if provided, nickname otherwise)<%= @us
 Include me in contributors ranking <%= @user.incl_in_rankings %>
 Display my full name in rankings (if provided) <%= @user.use_full_name %>
 
-User will be included in acknowledgements as: <%= @user.ack_entry %>
-User is included in ranking as: <%= @user.ranking_entry %>
+You will be included in acknowledgements as: <%= @user.ack_entry %>
+You are included in ranking as: <%= @user.ranking_entry %>
 
-<%= link_to 'Edit', edit_user_path(@user) %>
+<%= link_to 'Edit', edit_profile_path %>

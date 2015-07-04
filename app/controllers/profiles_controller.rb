@@ -1,8 +1,6 @@
-class ProfileController < ApplicationController
+class ProfilesController < ApplicationController
   before_action :require_user, only: [:destroy, :edit, :show, :update]
 
-# @TODO add flashes
-# @TODO add erb templates
 # @TODO send mails
 # @TODO password recovery
 # @TODO password change
@@ -15,9 +13,11 @@ class ProfileController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
+      flash[:success] = 'Profile created. Welcome on board!'
       redirect_to root_path
     else
-      redirect_to new_profile_path
+      flash.now[:error] = 'Could not create a new profile!'
+      render action: :new
     end
   end
 
@@ -25,6 +25,7 @@ class ProfileController < ApplicationController
     @user = current_user
     if @user.destroy!
       session[:user_id] = nil
+      flash[:success] = 'Your profile has been successfully deleted.'
       redirect_to root_path
     end
   end
@@ -44,9 +45,11 @@ class ProfileController < ApplicationController
   def update
     @user = current_user
     if @user.update!(user_params)
+      flash[:success] = 'Profile updated!'
       redirect_to profile_path
     else
-      redirect_to edit_profile_path
+      flash.now[:error] = 'Could not update your profile!'
+      render action: :edit
     end
   end
 
