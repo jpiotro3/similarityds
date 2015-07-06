@@ -1,5 +1,9 @@
+<%# @TODO formatting %>
+<%# @TODO deletion confirmation %>
+
+<% title "User profile for #{@user.email}" %>
 <div class="page-header">
-  <h1>User profile for <%= @user.email %></h1>
+  <h1><%= yield :title %></h1>
 </div>
 <%= @user.email %>
 <%= @user.first_name %> <%= @user.last_name %>
@@ -11,4 +15,5 @@ Display my full name in rankings (if provided) <%= @user.use_full_name %>
 User will be included in acknowledgements as: <%= @user.ack_entry %>
 User is included in ranking as: <%= @user.ranking_entry %>
 
-<%= link_to 'Edit', edit_user_path(@user) %>
+<%= link_to glyph_tag('edit', 'Edit'), edit_user_path(@user), class: 'btn btn-primary' %>
+<%= link_to glyph_tag('trash', 'Delete'), edit_user_path(@user), method: :delete, class: 'btn btn-danger', data: {confirm: 'Are you sure?'} %>

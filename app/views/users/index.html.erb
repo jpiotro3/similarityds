@@ -1,1 +1,34 @@
-<!-- @TODO implement -->
+<%# @TODO pagination %>
+<%# @TODO deletion confirmation %>
+
+<% title 'User catalogue' %>
+<div class="page-header">
+  <h1><%= yield :title %></h1>
+</div>
+<%= link_to new_user_path, class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> New user
+<% end %>
+<table class="table">
+  <thead>
+      <tr>
+        <th>E-mail</th>
+        <th>Name</th>
+        <th>Nick</th>
+        <th></th>
+      </tr>
+  </thead>
+  <tbody>
+<% @users.each do |u| %>
+    <tr>
+      <td><%= mail_to u.email %></td>
+      <td><%= u.full_name %></td>
+      <td><%= u.nickname %></td>
+      <td>
+        <%= link_to glyph_tag('user', 'View'), user_path(u), class: 'btn btn-primary' %>
+        <%= link_to glyph_tag('edit', 'Edit'), edit_user_path(u), class: 'btn btn-primary' %>
+        <%= link_to glyph_tag('trash', 'Delete'), users_path(u), method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' } %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>

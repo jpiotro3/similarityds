@@ -1,12 +1,15 @@
 class User < ActiveRecord::Base
   has_secure_password
+  ANONYMOUS = 'Anonymous'
+  ADMIN_ROLE = 'admin'
+  USER_ROLE = 'user'
 
   def self.roles
-    %w[admin, user]
+    [ADMIN_ROLE, USER_ROLE]
   end
 
   def ack_entry
-    return 'Anonymous' unless self.incl_in_thesis?
+    return ANONYMOUS unless self.incl_in_thesis?
 
     name = full_name
     if not name.empty?
@@ -17,7 +20,7 @@ class User < ActiveRecord::Base
   end
 
   def admin?
-    self.role == 'admin'
+    self.role == ADMIN_ROLE
   end
 
   def full_name
@@ -26,7 +29,7 @@ class User < ActiveRecord::Base
   end
 
   def ranking_entry
-    return 'Anonymous' unless self.incl_in_rankings?
+    return ANONYMOUS unless self.incl_in_rankings?
 
     name = full_name
     if self.use_full_name? and not name.empty?

@@ -1,8 +1,12 @@
+<%# @TODO formatting %>
+<%# @TODO add glyphs %>
+<%# @TODO redirect to prev page  %>
+<% title 'Login form' %>
 <div class="page-header">
-  <h1>Login form</h1>
+  <h1><%= yield :title %></h1>
 </div>
 <%= form_for(:session, url: login_path) do |f| %>
     <%= f.email_field :email, placeholder: 'e-mail' %>
     <%= f.password_field :password, placeholder: 'password' %>
-    <%= f.submit 'Log in' %>
+    <%= f.button glyph_tag('log-in', 'Log in'), type: :submit, class: 'btn btn-primary' %>
 <% end %>

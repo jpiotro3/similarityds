@@ -1,13 +1,19 @@
-<h1>Registration Form</h1>
-<%= form_for @user, url: new_profile_path do |f| %>
-  <%= f.email_field :email, :placeholder => 'e-mail (it will be never shared)' %>
-  <%= f.password_field :password, :placeholder => 'password' %>
-  <%= f.password_field :password_confirmation, :placeholder => 'password (repeated)' %>
-  <%= f.text_field :first_name, :placeholder => 'first name (optional)' %>
-  <%= f.text_field :last_name, :placeholder => 'last name (optional)' %>
-  <%= f.text_field :nickname, :placeholder => 'nickname (optional)' %>
-  <%= f.check_box :inc_in_thesis, :checked => true %> Include me in acknowledgments (full name if provided, nickname otherwise)
-  <%= f.check_box :inc_in_rankings, :checked => true %> Include me in contributors ranking
-  <%= f.check_box :use_full_name, :checked => false %> Display my full name in rankings (if provided)
-  <%= f.submit 'Register' %>
+<%# @TODO display form errors and repopulate %>
+<%# @TODO formatting %>
+<%# @TODO add glyphs %>
+<% title 'Registration' %>
+<div class="page-header">
+  <h1><%= yield :title %></h1>
+</div>
+<%= form_for @user, url: profile_path do |f| %>
+  <%= f.email_field :email, placeholder: 'e-mail (it will be never shared)' %>
+  <%= f.password_field :password, placeholder: 'password' %>
+  <%= f.password_field :password_confirmation, placeholder: 'password (repeated)' %>
+  <%= f.text_field :first_name, placeholder: 'first name (optional)' %>
+  <%= f.text_field :last_name, placeholder: 'last name (optional)' %>
+  <%= f.text_field :nickname, placeholder: 'nickname (optional)' %>
+  <%= f.check_box :inc_in_thesis, checked: true %> Include me in acknowledgments (full name if provided, nickname otherwise)
+  <%= f.check_box :inc_in_rankings, checked: true %> Include me in contributors ranking
+  <%= f.check_box :use_full_name, checked: false %> Display my full name in rankings (if provided)
+  <%= f.button glyph_tag('plus', 'Register'), type: :submit, class: 'btn btn-primary' %>
 <% end %>

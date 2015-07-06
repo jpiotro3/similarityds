@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Image Similarity Data Collector</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <title><%= yield(:title).presence || 'SimilarityDS' %> &mdash; Image Similarity Data Set</title>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body role="document">
@@ -23,23 +23,23 @@
       </div>
       <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="<%= active_cls(about_path) %>"><%= link_to 'About', about_path %></li>
+            <%= menu_item 'About', about_path %>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <% if admin? %>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administration <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li class="<%= active_cls(users_path) %>"><%= link_to 'Users', users_path %></li>
+                <%= menu_item 'User catalogue', users_path, glyph: 'list' %>
               </ul>
             </li>
             <% end %>
             <% if logged_in? %>
-            <li class="<%= active_cls(profile_path) %>"><%= link_to 'My profile', profile_path %></li>
-            <li><%= link_to 'Log out', logout_path, method: :delete %></li>
+            <%= menu_item 'My profile', profile_path, glyph: 'user' %>
+            <%= menu_item 'Log out', logout_path, glyph: 'log-out', method: :delete %>
             <% else %>
-            <li class="<%= active_cls(new_profile_path) %>"><%= link_to  'Register', new_profile_path %></li>
-            <li class="<%= active_cls(login_path) %>"><%= link_to  'Log in', login_path %></li>
+            <%= menu_item 'Register', new_profile_path, glyph: 'plus' %>
+            <%= menu_item 'Log in', login_path, glyph: 'log-in' %>
             <% end %>
           </ul>
       </div>
@@ -50,7 +50,7 @@
   <% flash.each do |key, value| %>
       <div class="alert <%= flash_class(key) %> alert-dismissible" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <strong><%= flash_header(key) %></strong> <%= value %>
+        <%= flash_glyph(key) %> <%= value %>
       </div>
   <% end %>
   <%= yield %>

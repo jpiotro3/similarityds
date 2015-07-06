@@ -8,6 +8,7 @@ class ProfilesController < ApplicationController
 # @TODO i18n
 # @TODO add tests
 # @TODO add avatars
+# @TODO require unique e-mail
 
   def create
     @user = User.new(user_params)

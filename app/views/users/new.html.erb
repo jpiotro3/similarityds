@@ -1,14 +1,19 @@
-<!-- @TODO add role -->
-<h1>New User</h1>
+<%# @TODO add role %>
+<%# @TODO formatting %>
+<%# @TODO add glyphs %>
+<% title 'New user form' %>
+<div class="page-header">
+  <h1><%= yield :title %></h1>
+</div>
 <%= form_for @user, url: new_user_path do |f| %>
-  <%= f.email_field :email, :placeholder => 'e-mail (it will be never shared)' %>
-  <%= f.password_field :password, :placeholder => 'password' %>
-  <%= f.password_field :password_confirmation, :placeholder => 'password (repeated)' %>
-  <%= f.text_field :first_name, :placeholder => 'first name (optional)' %>
-  <%= f.text_field :last_name, :placeholder => 'last name (optional)' %>
-  <%= f.text_field :nickname, :placeholder => 'nickname (optional)' %>
-  <%= f.check_box :inc_in_thesis, :checked => true %> Include user in acknowledgments (full name if provided, nickname otherwise)
-  <%= f.check_box :inc_in_rankings, :checked => true %> Include user in contributors ranking
-  <%= f.check_box :use_full_name, :checked => false %> Display full name in rankings (if provided)
-  <%= f.submit 'Register' %>
+  <%= f.email_field :email, placeholder: 'e-mail (it will be never shared)' %>
+  <%= f.password_field :password, placeholder: 'password' %>
+  <%= f.password_field :password_confirmation, placeholder: 'password (repeated)' %>
+  <%= f.text_field :first_name, placeholder: 'first name (optional)' %>
+  <%= f.text_field :last_name, placeholder: 'last name (optional)' %>
+  <%= f.text_field :nickname, placeholder: 'nickname (optional)' %>
+  <%= f.check_box :inc_in_thesis, checked: true %> Include user in acknowledgments (full name if provided, nickname otherwise)
+  <%= f.check_box :inc_in_rankings, checked: true %> Include user in contributors ranking
+  <%= f.check_box :use_full_name, checked: false %> Display full name in rankings (if provided)
+  <%= f.button glyph_tag('plus', 'Create'), type: :submit, class: 'btn btn-warning' %>
 <% end %>

@@ -1,5 +1,11 @@
+<%# @TODO formatting %>
+<%# @TODO password change %>
+<%# @TODO profile picture %>
+<%# @TODO deletion confirmation %>
+
+<% title 'My profile' %>
 <div class="page-header">
-  <h1>Your profile</h1>
+  <h1><%= yield :title %></h1>
 </div>
 <%= @user.email %>
 <%= @user.first_name %> <%= @user.last_name %>
@@ -11,4 +17,5 @@ Display my full name in rankings (if provided) <%= @user.use_full_name %>
 You will be included in acknowledgements as: <%= @user.ack_entry %>
 You are included in ranking as: <%= @user.ranking_entry %>
 
-<%= link_to 'Edit', edit_profile_path %>
+<%= link_to glyph_tag('edit', 'Edit'), edit_profile_path, class: 'btn btn-primary' %>
+<%= link_to glyph_tag('trash', 'Delete'), profile_path, method: :delete, class: 'btn btn-danger', data: { confirm: "Are you sure?" } %>
