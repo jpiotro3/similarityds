@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   before_action :require_admin
 
+  USERS_PER_PAGE = 50
+
   # @TODO add pagination
   # @TODO send mails
   # @TODO view cleanups
@@ -11,8 +13,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      flash[:success] = 'User created.'
-      redirect_to user_path(@user)
+      redirect_to user_path(@user), flash: {success: 'User created!'}
     else
       flash.now[:error] = 'Could not create a new user!'
       render action: :new
@@ -22,8 +23,7 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     if @user.destroy!
-      flash[:success] = 'User deleted!'
-      redirect_to users_path
+      redirect_to users_path, flash: {success: 'User deleted!'}
     end
   end
 
@@ -32,7 +32,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.order(:email)
+    @users = User.paginate(page: params[:page], per_page: USERS_PER_PAGE).order(:email)
   end
 
   def new
@@ -46,8 +46,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update!(user_params)
-      flash[:success] = 'User updated'
-      redirect_to user_path(@user)
+      redirect_to user_path(@user), flash: {success: 'User updated'}
     else
       flash.now[:error] = 'Could not update the user!'
       render action: :edit

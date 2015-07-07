@@ -17,11 +17,18 @@ class ApplicationController < ActionController::Base
   end
 
   def require_admin
-    redirect_to root_path, error: 'Access prohibited!' unless current_user.admin?
+    unless admin?
+      redirect_to (request.referer.nil? ? root_path : :back),
+                  flash: {error: 'Access prohibited!'}
+    end
   end
 
   def require_user
-    redirect_to login_path, error: 'You must be logged in to access this section!' unless logged_in?
+    unless logged_in?
+      session[:path] = request.original_fullpath
+      redirect_to login_path,
+                  flash: {error: 'You must be logged in to access this section!'}
+    end
   end
   
 end

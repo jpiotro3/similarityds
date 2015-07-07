@@ -8,6 +8,7 @@
 <%= link_to new_user_path, class: 'btn btn-primary' do %>
     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> New user
 <% end %>
+<%= will_paginate @users, renderer: BootstrapPagination::Rails %>
 <table class="table">
   <thead>
       <tr>

@@ -1,12 +1,26 @@
-<%# @TODO formatting %>
-<%# @TODO add glyphs %>
-<%# @TODO redirect to prev page  %>
+<%# @TODO field labels && i18n %>
+<%# @TODO error feedback for empty fields %>
+
 <% title 'Login form' %>
 <div class="page-header">
   <h1><%= yield :title %></h1>
 </div>
-<%= form_for(:session, url: login_path) do |f| %>
-    <%= f.email_field :email, placeholder: 'e-mail' %>
-    <%= f.password_field :password, placeholder: 'password' %>
-    <%= f.button glyph_tag('log-in', 'Log in'), type: :submit, class: 'btn btn-primary' %>
+<%= form_for(:session, url: login_path, html: {class: 'form-horizontal', role: 'form'}) do |f| %>
+    <div class="form-group">
+        <%= f.label :email, class: 'control-label col-md-3' %>
+        <div class="col-md-6">
+            <%= f.email_field :email, placeholder: 'Enter e-mail', class: 'form-control' %>
+        </div>
+    </div>
+    <div class="form-group">
+        <%= f.label :password, class: 'control-label col-md-3' %>
+        <div class="col-md-6">
+            <%= f.password_field :password, placeholder: 'Enter password', class: 'form-control' %>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-3 col-md-6">
+            <%= f.button glyph_tag('log-in', 'Log in'), type: :submit, class: 'btn btn-primary' %>
+        </div>
+    </div>
 <% end %>

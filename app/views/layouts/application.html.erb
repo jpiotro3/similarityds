@@ -10,7 +10,7 @@
 </head>
 <body role="document">
 
-<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+<nav class="navbar navbar-default navbar-static-top" role="navigation">
     <div class="container-fluid">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -38,7 +38,7 @@
             <%= menu_item 'My profile', profile_path, glyph: 'user' %>
             <%= menu_item 'Log out', logout_path, glyph: 'log-out', method: :delete %>
             <% else %>
-            <%= menu_item 'Register', new_profile_path, glyph: 'plus' %>
+            <%= menu_item 'Register', new_profile_path, glyph: 'user' %>
             <%= menu_item 'Log in', login_path, glyph: 'log-in' %>
             <% end %>
           </ul>
@@ -47,13 +47,21 @@
 </nav>
 
 <div class="container" role="main">
-  <% flash.each do |key, value| %>
-      <div class="alert <%= flash_class(key) %> alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <%= flash_glyph(key) %> <%= value %>
+  <% unless flash.empty? %>
+  <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+      <% flash.each do |key, value| %>
+        <div class="alert <%= flash_class(key) %> alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <%= flash_glyph(key) %> <%= value %>
+        </div>
+      <% end %>
       </div>
+  </div>
   <% end %>
-  <%= yield %>
+  <div class="row">
+    <%= yield %>
+  </div>
 </div>
 
 <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>

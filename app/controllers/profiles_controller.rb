@@ -13,9 +13,9 @@ class ProfilesController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      reset_session
       session[:user_id] = @user.id
-      flash[:success] = 'Profile created. Welcome on board!'
-      redirect_to root_path
+      redirect_to root_path, flash: {success: 'Profile created. Welcome on board!'}
     else
       flash.now[:error] = 'Could not create a new profile!'
       render action: :new
@@ -25,9 +25,8 @@ class ProfilesController < ApplicationController
   def destroy
     @user = current_user
     if @user.destroy!
-      session[:user_id] = nil
-      flash[:success] = 'Your profile has been successfully deleted.'
-      redirect_to root_path
+      reset_session
+      redirect_to root_path, flash: {error: 'Your profile has been successfully deleted.'}
     end
   end
 
@@ -46,8 +45,7 @@ class ProfilesController < ApplicationController
   def update
     @user = current_user
     if @user.update!(user_params)
-      flash[:success] = 'Profile updated!'
-      redirect_to profile_path
+      redirect_to profile_path, flash: {success: 'Profile updated!' }
     else
       flash.now[:error] = 'Could not update your profile!'
       render action: :edit
