@@ -25,6 +25,16 @@ module ApplicationHelper
     glyph_tag(name)
   end
 
+  def form_group_class_for(obj, param)
+    if obj.errors.include?(param)
+      'form-group has-error has-feedback'
+    elsif not obj.attributes[param].nil? and not obj.attributes[param].empty?
+      'form-group has-success has-feedback'
+    else
+      'form-group'
+    end
+  end
+
   def glyph_tag(name, text = '')
     tag = ''
     unless name.nil? or name.empty?
@@ -33,6 +43,19 @@ module ApplicationHelper
       tag += ' '
     end
     tag + text
+  end
+
+  def list_errors_for(obj, param)
+    output = ''
+    if obj.errors.include? param
+      output = content_tag(:span, '', :class => 'glyphicon glyphicon-remove form-control-feedback', :'aria-hidden' => 'true')
+      output += content_tag(:ul, '', :class => 'list-unstyled') {
+          obj.errors.full_messages_for(param).collect  { |m| content_tag :li, m }.join('').html_safe
+        }
+    elsif not obj.attributes[param].nil? and not obj.attributes[param].empty?
+      output = content_tag(:span, '', :class => 'glyphicon glyphicon-ok form-control-feedback', :'aria-hidden' => 'true')
+    end
+    output
   end
 
   def menu_item(name, path, options = {})

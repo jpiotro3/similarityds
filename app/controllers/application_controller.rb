@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  include HttpAcceptLanguage::AutoLocale
+
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
@@ -12,6 +14,10 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
+  def default_url_options(options = {})
+    { locale: I18n.locale }.merge options
+  end
+
   def logged_in?
     not current_user.nil?
   end
@@ -19,7 +25,7 @@ class ApplicationController < ActionController::Base
   def require_admin
     unless admin?
       redirect_to (request.referer.nil? ? root_path : :back),
-                  flash: {error: 'Access prohibited!'}
+                  flash: {error: I18n.t(:access_prohibited)}
     end
   end
 
@@ -27,8 +33,8 @@ class ApplicationController < ActionController::Base
     unless logged_in?
       session[:path] = request.original_fullpath
       redirect_to login_path,
-                  flash: {error: 'You must be logged in to access this section!'}
+                  flash: {error: I18n.t(:you_must_be_logged_in)}
     end
   end
-  
+
 end

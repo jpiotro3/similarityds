@@ -22,7 +22,9 @@ class UsersController < ApplicationController
 
   def destroy
     @user = User.find(params[:id])
+    deleted_self = (current_user == @user)
     if @user.destroy!
+      reset_session if deleted_self
       redirect_to users_path, flash: {success: 'User deleted!'}
     end
   end

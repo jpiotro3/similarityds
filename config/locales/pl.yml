@@ -1,0 +1,31 @@
+pl:
+  about: 'O projekcie'
+  access_prohibited: 'Odmowa dostępu!'
+  enter_email: 'Wpisz e-mail'
+  enter_password: 'Wpisz hasło'
+  image_similarity_ds: 'Zestaw danych o podobieństwie obrazów'
+  log_in: 'Zaloguj'
+  log_out: 'Wyloguj'
+  login_failed: 'Nie udało Ci się zalogować! Niepoprawny e-mail lub hasło.'
+  login_form: 'Logowanie'
+  my_profile: 'Mój profil'
+  register_new_profile: 'Rejestracja'
+  user_catalogue: 'Spis użytkowników'
+  you_have_successfully_logged_in: 'Udało Ci się pomyślnie zalogować. Witamy ponownie!'
+  you_have_successfully_logged_out: 'Udało Ci się pomyślnie wylogować.'
+  you_must_be_logged_in: 'Musisz być zalogowany by odwiedzić tą stronę!'
+
+  activemodel:
+    attributes:
+      session:
+        email: 'E-mail'
+        password: 'Hasło'
+
+    errors:
+      models:
+        session:
+          attributes:
+            email:
+              blank: 'nie może być pusty'
+            password:
+              blank:  'nie może być puste'

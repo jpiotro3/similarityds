@@ -35,6 +35,8 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'will_paginate', '~> 3.0.6'
 gem 'will_paginate-bootstrap'
 
+gem 'http_accept_language'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 

@@ -1,26 +1,25 @@
-<%# @TODO field labels && i18n %>
-<%# @TODO error feedback for empty fields %>
-
-<% title 'Login form' %>
+<% title t(:login_form) %>
 <div class="page-header">
   <h1><%= yield :title %></h1>
 </div>
 <%= form_for(:session, url: login_path, html: {class: 'form-horizontal', role: 'form'}) do |f| %>
-    <div class="form-group">
+    <div class="<%= form_group_class_for(@session, :email)%>">
         <%= f.label :email, class: 'control-label col-md-3' %>
         <div class="col-md-6">
-            <%= f.email_field :email, placeholder: 'Enter e-mail', class: 'form-control' %>
+            <%= f.email_field :email, value: @session.email, placeholder: t(:enter_email), class: 'form-control' %>
+            <%= list_errors_for(@session, :email) %>
         </div>
     </div>
-    <div class="form-group">
+    <div class="<%= form_group_class_for(@session, :password)%>">
         <%= f.label :password, class: 'control-label col-md-3' %>
         <div class="col-md-6">
-            <%= f.password_field :password, placeholder: 'Enter password', class: 'form-control' %>
+            <%= f.password_field :password, placeholder: t(:enter_password), class: 'form-control' %>
+            <%= list_errors_for(@session, :password) %>
         </div>
     </div>
     <div class="form-group">
         <div class="col-md-offset-3 col-md-6">
-            <%= f.button glyph_tag('log-in', 'Log in'), type: :submit, class: 'btn btn-primary' %>
+            <%= f.button glyph_tag('log-in', t(:log_in)), type: :submit, class: 'btn btn-primary' %>
         </div>
     </div>
 <% end %>
