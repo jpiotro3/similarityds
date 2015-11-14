@@ -1,22 +1,24 @@
 class User < ActiveRecord::Base
-  has_secure_password
-  ANONYMOUS = 'Anonymous'
   ADMIN_ROLE = 'admin'
-  USER_ROLE = 'user'
+  USER_ROLE  = 'user'
+
+  validates_presence_of :email
+  has_secure_password
 
   def self.roles
     [ADMIN_ROLE, USER_ROLE]
   end
 
   def ack_entry
-    return ANONYMOUS unless self.incl_in_thesis?
-
-    name = full_name
-    if not name.empty?
-      name
-    else
-      self.nickname
+    if incl_in_thesis?
+      name = full_name
+      if not name.empty?
+        return name
+      elsif not nickname.empty?
+        return nickname
+      end
     end
+    return I18n.t(:anonymous)
   end
 
   def admin?
@@ -29,14 +31,15 @@ class User < ActiveRecord::Base
   end
 
   def ranking_entry
-    return ANONYMOUS unless self.incl_in_rankings?
-
-    name = full_name
-    if self.use_full_name? and not name.empty?
-      name
-    else
-      self.nickname
+    if incl_in_rankings?
+      name = full_name
+      if use_full_name? and not name.empty?
+        return name
+      elsif not nickname.empty?
+        return nickname
+      end
     end
+    return I18n.t(:anonymous)
   end
 
 end

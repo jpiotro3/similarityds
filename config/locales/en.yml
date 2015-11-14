@@ -1,21 +1,95 @@
 en:
-  about: 'About'
-  access_prohibited: 'Access prohibited!'
-  enter_email: 'Enter e-mail'
-  enter_password: 'Enter password'
-  image_similarity_ds: 'Image Similarity Data Set'
-  log_in: 'Log in'
-  log_out: 'Log out'
-  login_failed: 'Log in failed! Incorrect email or password.'
-  login_form: 'Login Form'
-  my_profile: 'My profile'
-  register_new_profile: 'Register'
-  user_catalogue: 'User catalogue'
-  you_have_successfully_logged_in: 'You have successfully logged in. Welcome back!'
-  you_have_successfully_logged_out: 'You have successfully logged out!'
-  you_must_be_logged_in: 'You must be logged in to access this section!'
-
+  about: About
+  access_prohibited: Access prohibited!
+  administration: Administration
+  anonymous: Anonymous
+  are_you_sure: Are you sure?
+  change_password: Change password
+  change: Change
+  could_not_create_profile: Could not create a new profile!
+  could_not_create_user: Could not create a new user!
+  could_not_update_profile: Could not update your profile!
+  could_not_update_user: Could not update the user!
+  delete: Delete
+  display_settings: Display settings
+  display_full_name: "Display my full name in ranking:"
+  display_in_ranking: "Display in ranking:"
+  edit: Edit
+  email: E-mail
+  enter_email: Enter e-mail
+  enter_old_password: Enter current password
+  enter_password: Enter password
+  enter_new_password: Enter new password
+  full_name: Full name
+  full_name_explanation: >
+    This field is optional. Enter your name if want it to be displayed in
+    acknowledgements or contributor ranking.
+  image_similarity_ds: Image Similarity Data Set
+  incl_me_in_ack: >
+    Include me in acknowledgments (full name if provided,
+    nickname otherwise):
+  incl_me_in_ack_label: "Include me in acknowledgments:"
+  incl_me_in_rankings: "Include me in contributors ranking:"
+  incl_in_thesis_explanation: >
+    If you check 'Yes', your full name (or nickname if you leave name empty)
+    will be included in acknowledgments in my thesis and dataset
+    documentation. You can always change this setting later.
+  incl_in_rankings_explanation: >
+    If you check 'Yes', your name or nickname will be included in
+    contributor ranking on this site. You can always change this
+    setting later.
+  it_wont_be_shared: Your e-mail will never be shared with anyone.
+  log_in: Log in
+  log_out: Log out
+  login_failed: Log in failed! Incorrect email or password.
+  login_form: Login Form
+  my_profile: My profile
+  nickname: Nickname
+  nickname_explanation: >
+    This field is optional. Enter your nickname if want it to be displayed
+    in acknowledgements or contributor ranking.
+  no_val: No
+  not_valid: is not valid
+  password_change: Password change
+  personal_data: Personal data
+  profile_created: Profile created. Welcome on board!
+  profile_deleted: Your profile has been successfully deleted.
+  profile_edit: Profile edit
+  profile_updated: Profile updated!
+  register: Register
+  register_new_profile: Register
+  registration: Registration
+  retype_password: Retype password
+  retype_new_password: Retype new password
+  save: Save
+  user_catalogue: User catalogue
+  user_created: User created!
+  user_deleted: User deleted!
+  user_updated: User updated!
+  why_register_heading: Why do I have to register?
+  why_register: >
+    The goal of this site is to gather data on how people define similarity
+    between images. We want to be able to tell what data comes from a single
+    person. That's why we ask you to register and then log in before starting
+    data collection. The data will be anonymised, so there will be no way to
+    tie your personal data with image similarity data. Your e-mail will never
+    be shared with anynone and your personal data will never passed to anyone.
+    We require e-mail for the sole purpose of password recovery.
+  yes_val: Yes
+  you_have_successfully_logged_in: You have successfully logged in. Welcome back!
+  you_have_successfully_logged_out: You have successfully logged out!
+  you_must_be_logged_in: You must be logged in to access this section!
+  you_will_be_included_in_ack_as: "You will be included in acknowledgements as:"
+  you_will_be_included_in_ranking_as: "You are included in ranking as:"
   activemodel:
     attributes:
+      change_password_form:
+        old_password: Current password
+        password: New password
       session:
-        email: 'E-mail'
+        email: E-mail
+
+  activerecord:
+    attributes:
+      user:
+        email: E-mail

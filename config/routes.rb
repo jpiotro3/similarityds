@@ -9,6 +9,9 @@ Rails.application.routes.draw do
     get      '/about'   => 'pages#about', as: :about
 
     resource  :profile
+    get  '/profile/password_change' => 'profiles#change_password', as: :change_password
+    post '/profile/password_change' => 'profiles#change_password_submit'
+
     resources :users
   end
 

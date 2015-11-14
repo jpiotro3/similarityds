@@ -3,19 +3,17 @@ class UsersController < ApplicationController
 
   USERS_PER_PAGE = 50
 
-  # @TODO add pagination
+  # @TODO test pagination
   # @TODO send mails
-  # @TODO view cleanups
-  # @TODO i18n
   # @TODO add tests
   # @TODO add avatars
 
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to user_path(@user), flash: {success: 'User created!'}
+      redirect_to user_path(@user), flash: {success: t(:user_created)}
     else
-      flash.now[:error] = 'Could not create a new user!'
+      flash.now[:error] = t :could_not_create_user
       render action: :new
     end
   end
@@ -25,7 +23,7 @@ class UsersController < ApplicationController
     deleted_self = (current_user == @user)
     if @user.destroy!
       reset_session if deleted_self
-      redirect_to users_path, flash: {success: 'User deleted!'}
+      redirect_to users_path, flash: {success: t(:user_deleted)}
     end
   end
 
@@ -48,9 +46,9 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update!(user_params)
-      redirect_to user_path(@user), flash: {success: 'User updated'}
+      redirect_to user_path(@user), flash: {success: t(:user_updated)}
     else
-      flash.now[:error] = 'Could not update the user!'
+      flash.now[:error] = t :could_not_update_user
       render action: :edit
     end
   end

@@ -1,31 +1,138 @@
 pl:
-  about: 'O projekcie'
-  access_prohibited: 'Odmowa dostępu!'
-  enter_email: 'Wpisz e-mail'
-  enter_password: 'Wpisz hasło'
-  image_similarity_ds: 'Zestaw danych o podobieństwie obrazów'
-  log_in: 'Zaloguj'
-  log_out: 'Wyloguj'
-  login_failed: 'Nie udało Ci się zalogować! Niepoprawny e-mail lub hasło.'
-  login_form: 'Logowanie'
-  my_profile: 'Mój profil'
-  register_new_profile: 'Rejestracja'
-  user_catalogue: 'Spis użytkowników'
-  you_have_successfully_logged_in: 'Udało Ci się pomyślnie zalogować. Witamy ponownie!'
-  you_have_successfully_logged_out: 'Udało Ci się pomyślnie wylogować.'
-  you_must_be_logged_in: 'Musisz być zalogowany by odwiedzić tą stronę!'
+  about: O projekcie
+  access_prohibited: Odmowa dostępu!
+  administration: Administracja
+  anonymous: Anonim
+  are_you_sure: Czy jesteś pewien?
+  change_password: Zmień hasło
+  change: Zmień
+  could_not_create_profile: Wystąpił błąd podczas tworzenia profilu!
+  could_not_create_user: Wystąpił błąd podczas tworzenia konta użytkownika!
+  could_not_update_profile: Wystąpił błąd podczas aktualizacji profilu!
+  could_not_update_user: Wystąpił błąd podczas aktualizacji konta użytkownika!
+  delete: Usuń
+  display_settings: Ustawienia wyświetlania
+  display_full_name: "Wyświetlaj moje imię i nazwisko w rankingu:"
+  display_in_ranking: "W rankingu wyświetlaj:"
+  edit: Edytuj
+  email: E-mail
+  enter_email: Wpisz e-mail
+  enter_first_name: Wpisz imię
+  enter_last_name: Wpisz nazwisko
+  enter_nickname: Wpisz pseudonim
+  enter_password: Wpisz hasło
+  enter_new_password: Wpisz nowe hasło
+  enter_old_password: Wpisz aktualne hasło
+  full_name: Imię i nazwisko
+  full_name_explanation: >
+    To pole jest opcjonalne. Wpisz swoje imię i nazwisko, jeżeli chcesz by
+    zostało zamieszczone w podziękowaniach lub rankingu.
+  image_similarity_ds: Zestaw danyh o podobieństwie obrazów
+  incl_me_in_ack: >
+    Uwzględnij mnie w podziękowaniach (imię i nazwisko, jeżeli podano,
+    w przeciwnym wypadku pseudonim):
+  incl_me_in_ack_label: "Uwzględnij mnie w podziękowaniach:"
+  incl_me_in_rankings: "Uwzględnij mnie w rankingu:"
+  incl_in_thesis_explanation: >
+    Jeżeli zaznaczysz 'Tak', Twoje imię i nazwisko (lub pseudonim,
+    jeżeli imię i nazwisko zostawisz puste) zostaną zamieszczone w
+    podziękowaniach w rozprawie i dokumentacji zbioru danych. Będziesz mieć
+    możliwość zmiany tego ustawienia w późniejszym czasie.
+  incl_in_rankings_explanation: >
+    Jeżeli zaznaczysz 'Tak', Twoje imię i nazwisko lub pseudonim zostaną
+    zamieszczone w rankingu na stronie. Będziesz mieć będziesz mieć
+    możliwość zmiany tego ustawienia w późniejszym czasie.
+  it_wont_be_shared: >
+    Twój adres e-mail nie zostanie nikomu przekazany ani upubliczniony.
+  log_in: Zaloguj
+  log_out: Wyloguj
+  login_failed: Nie udało Ci się zalogować! Niepoprawny e-mail lub hasło.
+  login_form: Logowanie
+  my_profile: Mój profil
+  nickname: Pseudonim
+  nickname_explanation: >
+    To pole jest opcjonalne. Wpisz swój pseudonim,
+    jeżeli chcesz by został zamieszczony w podziękowaniach lub rankingu.
+  no_val: Nie
+  not_valid: jest nieprawidłowe
+  password_change: Zmiana hasła
+  personal_data: Dane personalne
+  profile_created: Twój profil został utworzony. Witamy!
+  profile_deleted: Twój profil został pomyślnie usunięty.
+  profile_edit: Edycja profilu
+  profile_updated: Twój profil został pomyślnie zaktualizowany.
+  register: Zarejestruj
+  register_new_profile: Rejestracja
+  registration: Rejestracja nowego użytkownika
+  retype_password: Wpisz ponownie hasło
+  retype_new_password: Wpisz ponownie nowe hasło
+  save: Zapisz
+  user_catalogue: Użytkownicy
+  user_created: Utworzono konto!
+  user_deleted: Konto użytkownika zostało usunięte!
+  user_updated: Konto użytkownika zostało zaktualizowane!
+  why_register_heading: Dlaczego mam się zarejestrować?
+  why_register: >
+      Celem niniejszej strony jest zebranie danych o tym jak ludzie postrzegają
+      podobieństwo między obrazami. Chcemy mieć możliwość ustalenia które
+      dane zostały zebrane od tej samej osoby. Dlatego też prosimy o
+      zarejestrowanie się i zalogowanie do serwisu. Zebrane dane o
+      podobieństwie obrazów zostaną poddane procesowi anonimizacji i nie
+      będzie możliwości powiązania ich z danymi osobowymi. Twój adres e-mail
+      i pozostałe dane osobowe nigdy nikomu nie
+      zostaną przekazane ani udostępnione. Wymagamy podania adresu e-mail,
+      tylko ze względu funkcję automatycznego odzyskiwania hasła.
+  yes_val: Tak
+  you_have_successfully_logged_in: Udało Ci się pomyślnie zalogować. Witamy ponownie!
+  you_have_successfully_logged_out: Udało Ci się pomyślnie wylogować.
+  you_must_be_logged_in: Musisz być zalogowany by odwiedzić tą stronę!
+  you_will_be_included_in_ack_as: "Zostaniesz zamieszczony w podziękowaniach jako:"
+  you_will_be_included_in_ranking_as: "W rankingu będziesz wyświetlany jako:"
 
   activemodel:
     attributes:
+      change_password_form:
+        old_password: Obecne hasło
+        password: Nowe hasło
+        password_confirmation: Potwierdzenie hasła
       session:
-        email: 'E-mail'
-        password: 'Hasło'
+        email: E-mail
+        password: Hasło
 
     errors:
       models:
+        change_password_form:
+          attributes:
+            old_password:
+              blank: nie może być puste
+            password:
+              blank: nie może być puste
+            password_confirmation:
+              blank: nie może być puste
         session:
           attributes:
             email:
-              blank: 'nie może być pusty'
+              blank: nie może być pusty
             password:
-              blank:  'nie może być puste'
+              blank:  nie może być puste
+
+  activerecord:
+    attributes:
+      user:
+        email: E-mail
+        first_name: Imię
+        last_name: Nazwisko
+        nickname: Pseudonim
+        password: Hasło
+        password_confirmation: Potwierdzenie hasła
+
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: nie może być pusty
+            password:
+              blank:  nie może być puste
+            password_confirmation:
+              blank:  nie może być puste

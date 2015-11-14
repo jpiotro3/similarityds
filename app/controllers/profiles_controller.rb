@@ -1,23 +1,38 @@
 class ProfilesController < ApplicationController
-  before_action :require_user, only: [:destroy, :edit, :show, :update]
+  before_action :require_user, only: [:change_password, :destroy,
+                                      :edit, :show, :update]
 
 # @TODO send mails
 # @TODO password recovery
 # @TODO password change
-# @TODO view cleanups
-# @TODO i18n
 # @TODO add tests
 # @TODO add avatars
 # @TODO require unique e-mail
 
+  def change_password
+    @pass_form = ChangePasswordForm.new(current_user)
+  end
+
+  def change_password_submit
+    @pass_form = ChangePasswordForm.new(current_user)
+    if @pass_form.submit(pass_form_params)
+      redirect_to :profile_path
+    else
+      render action: :change_password
+    end
+  end
+
   def create
     @user = User.new(user_params)
+    @user.incl_in_thesis   = false
+    @user.incl_in_rankings = false
+    @user.use_full_name    = false
     if @user.save
       reset_session
       session[:user_id] = @user.id
-      redirect_to root_path, flash: {success: 'Profile created. Welcome on board!'}
+      redirect_to root_path, flash: {success: t(:profile_created)}
     else
-      flash.now[:error] = 'Could not create a new profile!'
+      flash.now[:error] = t :could_not_create_profile
       render action: :new
     end
   end
@@ -26,7 +41,7 @@ class ProfilesController < ApplicationController
     @user = current_user
     if @user.destroy!
       reset_session
-      redirect_to root_path, flash: {error: 'Your profile has been successfully deleted.'}
+      redirect_to root_path, flash: {error: t(:profile_deleted)}
     end
   end
 
@@ -44,20 +59,27 @@ class ProfilesController < ApplicationController
 
   def update
     @user = current_user
-    if @user.update!(user_params)
-      redirect_to profile_path, flash: {success: 'Profile updated!' }
+    if @user.update!(user_edit_params)
+      redirect_to profile_path, flash: {success: t(:profile_updated) }
     else
-      flash.now[:error] = 'Could not update your profile!'
+      flash.now[:error] = t :could_not_update_profile
       render action: :edit
     end
   end
 
   private
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation,
-                                 :first_name, :last_name, :nickname,
-                                 :use_full_name, :incl_in_thesis,
-                                 :incl_in_rankings)
+    params.require(:user).permit(:email, :password, :password_confirmation)
   end
 
+  def user_edit_params
+    params.require(:user).permit(:email, :first_name, :last_name, :nickname,
+                                 :incl_in_thesis, :incl_in_rankings,
+                                 :use_full_name)
+  end
+
+  def pass_form_params
+    params.require(:change_password_form).permit(:old_password, :password,
+                                                 :password_confirmation)
+  end
 end
