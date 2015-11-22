@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     post '/profile/password_change' => 'profiles#change_password_submit'
 
     resources :users
+    get  '/users/:id/password_reset' => 'users#reset_password', as: :reset_user_password
+    post '/users/:id/password_reset' => 'users#reset_password_submit'
   end
 
   get '/:locale' => 'pages#index'

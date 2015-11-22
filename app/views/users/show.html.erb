@@ -5,15 +5,45 @@
 <div class="page-header">
   <h1><%= yield :title %></h1>
 </div>
-<%= @user.email %>
-<%= @user.first_name %> <%= @user.last_name %>
-<%= @user.nickname %>
-Include me in acknowledgments (full name if provided, nickname otherwise)<%= @user.incl_in_thesis %>
-Include me in contributors ranking <%= @user.incl_in_rankings %>
-Display my full name in rankings (if provided) <%= @user.use_full_name %>
+<p>
+  <%= link_to glyph_tag('edit', t(:edit)), edit_user_path, class: 'btn btn-primary' %>
+  <%= link_to glyph_tag('lock', t(:change_password)), reset_user_password_path, class: 'btn btn-primary' %>
+  <%= link_to glyph_tag('trash', t(:delete)), user_path, method: :delete, class: 'btn btn-danger', data: { confirm: t(:are_you_sure) } %>
+</p>
 
-User will be included in acknowledgements as: <%= @user.ack_entry %>
-User is included in ranking as: <%= @user.ranking_entry %>
+<div class="row">
+  <div class="col-xs-4">
+    <div class="panel panel-default">
+      <div class="panel-heading"><%= t :personal_data %></div>
+      <table class="table">
+        <tr><td><%= t :email %>:</td><td><%= @user.email %></td></tr>
+        <tr><td><%= t :full_name %>:</td><td><%= @user.first_name %> <%= @user.last_name %></td></tr>
+        <tr><td><%= t :nickname %>:</td><td><%= @user.nickname %></td></tr>
+      </table>
+    </div>
+  </div>
+  <div class="col-xs-4">
+    <div class="panel panel-default">
+      <div class="panel-heading"><%= t :display_settings %></div>
+      <table class="table">
+        <tr>
+          <td><%= t :incl_me_in_ack %></td>
+          <td><strong><%= @user.incl_in_thesis ? t(:yes_val) : t(:no_val) %></strong></td>
+        </tr>
+        <tr>
+          <td><%= t :incl_me_in_rankings %></td>
+          <td><strong><%= @user.incl_in_rankings ? t(:yes_val) : t(:no_val) %></strong></td>
+        </tr>
+        <tr>
+          <td><%= t :display_full_name %></td>
+          <td><strong><%= @user.use_full_name ? t(:yes_val) : t(:no_val) %></strong></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
 
-<%= link_to glyph_tag('edit', 'Edit'), edit_user_path(@user), class: 'btn btn-primary' %>
-<%= link_to glyph_tag('trash', 'Delete'), edit_user_path(@user), method: :delete, class: 'btn btn-danger', data: {confirm: 'Are you sure?'} %>
+<p><%= t :you_will_be_included_in_ack_as %> <strong><%= @user.ack_entry %></strong></p>
+<p><%= t :you_will_be_included_in_ranking_as %> <strong><%= @user.ranking_entry %></strong></p>
+
+<%= link_to glyph_tag('list', 'User Catalogue'), users_path, class: 'btn btn-primary' %>

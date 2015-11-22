@@ -1,15 +1,13 @@
-class ChangePasswordForm
+class ResetPasswordForm
   include ActiveModel::Model
 
-  attr_accessor :old_password, :password, :password_confirmation
+  attr_accessor :password, :password_confirmation
 
-  validates_presence_of :old_password, :password, :password_confirmation
+  validates_presence_of :password, :password_confirmation
   validates_confirmation_of :password
-  validate :verify_old_password
 
   def attributes
     {
-        :old_password => old_password,
         :password => password,
         :password_confirmation => password_confirmation
     }
@@ -24,7 +22,6 @@ class ChangePasswordForm
   end
 
   def submit(params)
-    self.old_password = params[:old_password]
     self.password = params[:password]
     self.password_confirmation = params[:password_confirmation]
 
@@ -40,10 +37,6 @@ class ChangePasswordForm
 
   def persisted?
     false
-  end
-
-  def verify_old_password
-    self.errors.add(:old_password, I18n.t(:not_valid)) unless @user.authenticate(old_password)
   end
 
 end

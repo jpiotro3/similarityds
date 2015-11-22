@@ -44,8 +44,8 @@ pl:
     możliwość zmiany tego ustawienia w późniejszym czasie.
   it_wont_be_shared: >
     Twój adres e-mail nie zostanie nikomu przekazany ani upubliczniony.
-  log_in: Zaloguj
-  log_out: Wyloguj
+  log_in: Zaloguj się
+  log_out: Wyloguj się
   login_failed: Nie udało Ci się zalogować! Niepoprawny e-mail lub hasło.
   login_form: Logowanie
   my_profile: Mój profil
@@ -56,6 +56,8 @@ pl:
   no_val: Nie
   not_valid: jest nieprawidłowe
   password_change: Zmiana hasła
+  password_changed: Hasło zostało zmienione.
+  password_reset: Resetowanie hasła
   personal_data: Dane personalne
   profile_created: Twój profil został utworzony. Witamy!
   profile_deleted: Twój profil został pomyślnie usunięty.
@@ -95,10 +97,12 @@ pl:
         old_password: Obecne hasło
         password: Nowe hasło
         password_confirmation: Potwierdzenie hasła
+      reset_password_form:
+              password: Nowe hasło
+              password_confirmation: Potwierdzenie hasła
       session:
         email: E-mail
         password: Hasło
-
     errors:
       models:
         change_password_form:
@@ -109,6 +113,14 @@ pl:
               blank: nie może być puste
             password_confirmation:
               blank: nie może być puste
+              confirmation: różni się od nowego hasła
+        reset_password_form:
+          attributes:
+            password:
+              blank: nie może być puste
+            password_confirmation:
+              blank: nie może być puste
+              confirmation: różni się od nowego hasła
         session:
           attributes:
             email:

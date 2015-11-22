@@ -39,13 +39,28 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def reset_password
+    @user = User.find(params[:id])
+    @pass_form = ResetPasswordForm.new(@user)
+  end
+
+  def reset_password_submit
+    @user = User.find(params[:id])
+    @pass_form = ResetPasswordForm.new(@user)
+    if @pass_form.submit(pass_form_params)
+      redirect_to user_path, flash: {success: t(:password_changed) }
+    else
+      render action: :reset_password
+    end
+  end
+
   def show
     @user = User.find(params[:id])
   end
 
   def update
     @user = User.find(params[:id])
-    if @user.update!(user_params)
+    if @user.update!(user_edit_params)
       redirect_to user_path(@user), flash: {success: t(:user_updated)}
     else
       flash.now[:error] = t :could_not_update_user
@@ -61,4 +76,14 @@ class UsersController < ApplicationController
                                  :incl_in_rankings)
   end
 
+  def user_edit_params
+    params.require(:user).permit(:email, :first_name, :last_name, :nickname,
+                                 :incl_in_thesis, :incl_in_rankings,
+                                 :use_full_name)
+  end
+
+  def pass_form_params
+    params.require(:reset_password_form).permit(:password,
+                                                 :password_confirmation)
+  end
 end

@@ -51,6 +51,8 @@ en:
   no_val: No
   not_valid: is not valid
   password_change: Password change
+  password_changed: Your password has been changed.
+  password_reset: Password reset
   personal_data: Personal data
   profile_created: Profile created. Welcome on board!
   profile_deleted: Your profile has been successfully deleted.

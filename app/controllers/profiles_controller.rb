@@ -1,10 +1,10 @@
 class ProfilesController < ApplicationController
-  before_action :require_user, only: [:change_password, :destroy,
-                                      :edit, :show, :update]
+  before_action :require_user, only: [:change_password,
+                                      :change_password_submit,
+                                      :destroy, :edit, :show, :update]
 
 # @TODO send mails
 # @TODO password recovery
-# @TODO password change
 # @TODO add tests
 # @TODO add avatars
 # @TODO require unique e-mail
@@ -16,7 +16,7 @@ class ProfilesController < ApplicationController
   def change_password_submit
     @pass_form = ChangePasswordForm.new(current_user)
     if @pass_form.submit(pass_form_params)
-      redirect_to :profile_path
+      redirect_to profile_path, flash: {success: t(:password_changed) }
     else
       render action: :change_password
     end
