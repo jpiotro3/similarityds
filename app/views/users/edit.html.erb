@@ -1,7 +1,4 @@
-<%# @TODO edit form %>
-<%# @TODO display errors and repopulate %>
-<%# @TODO i18n %>
-<% title 'User edit form' %>
+<% title(t :user_edit_form) %>
 <div class="page-header">
   <h1><%= yield :title %></h1>
 </div>
@@ -11,7 +8,13 @@
       <div class="col-md-6">
         <%= f.email_field :email, value: @user.email, placeholder: t(:enter_email), class: 'form-control' %>
         <%= list_errors_for(@user, :email) %>
-        <p><%= t :it_wont_be_shared %></p>
+      </div>
+    </div>
+    <div class="<%= form_group_class_for(@user, :role)%>">
+      <%= f.label :role, class: 'control-label col-md-3' %>
+      <div class="col-md-6">
+        <%= f.select :role, User.roles, {}, { class: 'form-control'} %>
+        <%= list_errors_for(@user, :role) %>
       </div>
     </div>
     <div class="<%= form_group_class_for(@user, :first_name)%>">
@@ -19,7 +22,6 @@
       <div class="col-md-6">
         <%= f.text_field :first_name, value: @user.first_name, placeholder: t(:enter_first_name), class: 'form-control' %>
         <%= list_errors_for(@user, :first_name) %>
-        <p><%= t :full_name_explanation %></p>
       </div>
     </div>
     <div class="<%= form_group_class_for(@user, :last_name)%>">
@@ -27,16 +29,14 @@
       <div class="col-md-6">
         <%= f.text_field :last_name, value: @user.last_name, placeholder: t(:enter_last_name), class: 'form-control' %>
         <%= list_errors_for(@user, :last_name) %>
-        <p><%= t :full_name_explanation %></p>
-      </div>
+       </div>
     </div>
     <div class="<%= form_group_class_for(@user, :nickname)%>">
       <%= f.label :nickname, class: 'control-label col-md-3' %>
       <div class="col-md-6">
         <%= f.text_field :nickname, value: @user.nickname, placeholder: t(:enter_nickname), class: 'form-control' %>
         <%= list_errors_for(@user, :nickname) %>
-        <p><%= t :nickname_explanation %></p>
-      </div>
+       </div>
     </div>
     <div class="<%= form_group_class_for(@user, :incl_in_thesis)%>">
       <div class="control-label col-md-3">
@@ -50,7 +50,6 @@
       </div>
       <div class="col-md-6">
         <%= list_errors_for(@user, :incl_in_thesis) %>
-        <p><%= t :incl_in_thesis_explanation %></p>
       </div>
     </div>
     <div class="<%= form_group_class_for(@user, :incl_in_rankings)%>">
@@ -65,8 +64,7 @@
       </div>
       <div class="col-md-6">
         <%= list_errors_for(@user, :incl_in_rankings) %>
-        <p><%= t :incl_in_rankings_explanation %></p>
-      </div>
+       </div>
     </div>
     <div class="<%= form_group_class_for(@user, :use_full_name)%>">
       <div class="control-label col-md-3">

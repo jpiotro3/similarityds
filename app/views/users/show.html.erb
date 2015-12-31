@@ -1,7 +1,6 @@
-<%# @TODO formatting %>
 <%# @TODO deletion confirmation %>
 
-<% title "User profile for #{@user.email}" %>
+<% title(t :user_profile, user: @user.email) %>
 <div class="page-header">
   <h1><%= yield :title %></h1>
 </div>
@@ -46,4 +45,4 @@
 <p><%= t :you_will_be_included_in_ack_as %> <strong><%= @user.ack_entry %></strong></p>
 <p><%= t :you_will_be_included_in_ranking_as %> <strong><%= @user.ranking_entry %></strong></p>
 
-<%= link_to glyph_tag('list', 'User Catalogue'), users_path, class: 'btn btn-primary' %>
+<%= link_to glyph_tag('list', t(:user_catalogue)), users_path, class: 'btn btn-primary' %>

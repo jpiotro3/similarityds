@@ -10,6 +10,7 @@ pl:
   could_not_create_user: Wystąpił błąd podczas tworzenia konta użytkownika!
   could_not_update_profile: Wystąpił błąd podczas aktualizacji profilu!
   could_not_update_user: Wystąpił błąd podczas aktualizacji konta użytkownika!
+  create: Dodaj
   delete: Usuń
   display_settings: Ustawienia wyświetlania
   display_full_name: "Wyświetlaj moje imię i nazwisko w rankingu:"
@@ -49,6 +50,8 @@ pl:
   login_failed: Nie udało Ci się zalogować! Niepoprawny e-mail lub hasło.
   login_form: Logowanie
   my_profile: Mój profil
+  new_user: Nowy użytkownik
+  new_user_form: Nowy użytkownik
   nickname: Pseudonim
   nickname_explanation: >
     To pole jest opcjonalne. Wpisz swój pseudonim,
@@ -72,7 +75,11 @@ pl:
   user_catalogue: Użytkownicy
   user_created: Utworzono konto!
   user_deleted: Konto użytkownika zostało usunięte!
+  user_edit: Edycja
+  user_edit_form: Edycja użytkownika
   user_updated: Konto użytkownika zostało zaktualizowane!
+  user_profile: Profil użytkownika %{user}
+  view: Podgląd
   why_register_heading: Dlaczego mam się zarejestrować?
   why_register: >
       Celem niniejszej strony jest zebranie danych o tym jak ludzie postrzegają
@@ -98,11 +105,12 @@ pl:
         password: Nowe hasło
         password_confirmation: Potwierdzenie hasła
       reset_password_form:
-              password: Nowe hasło
-              password_confirmation: Potwierdzenie hasła
+        password: Nowe hasło
+        password_confirmation: Potwierdzenie hasła
       session:
         email: E-mail
         password: Hasło
+
     errors:
       models:
         change_password_form:
@@ -137,6 +145,7 @@ pl:
         nickname: Pseudonim
         password: Hasło
         password_confirmation: Potwierdzenie hasła
+        role: Rola
 
     errors:
       models:

@@ -77,8 +77,8 @@ class UsersController < ApplicationController
   end
 
   def user_edit_params
-    params.require(:user).permit(:email, :first_name, :last_name, :nickname,
-                                 :incl_in_thesis, :incl_in_rankings,
+    params.require(:user).permit(:email, :first_name, :last_name, :role,
+                                 :nickname, :incl_in_thesis, :incl_in_rankings,
                                  :use_full_name)
   end
 

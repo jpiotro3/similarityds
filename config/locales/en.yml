@@ -10,6 +10,7 @@ en:
   could_not_create_user: Could not create a new user!
   could_not_update_profile: Could not update your profile!
   could_not_update_user: Could not update the user!
+  create: Create
   delete: Delete
   display_settings: Display settings
   display_full_name: "Display my full name in ranking:"
@@ -44,6 +45,8 @@ en:
   login_failed: Log in failed! Incorrect email or password.
   login_form: Login Form
   my_profile: My profile
+  new_user: New user
+  new_user_form: New user
   nickname: Nickname
   nickname_explanation: >
     This field is optional. Enter your nickname if want it to be displayed
@@ -67,7 +70,11 @@ en:
   user_catalogue: User catalogue
   user_created: User created!
   user_deleted: User deleted!
+  user_edit: User edit
+  user_edit_form: User edit
+  user_profile: User profile for %{user}
   user_updated: User updated!
+  view: View
   why_register_heading: Why do I have to register?
   why_register: >
     The goal of this site is to gather data on how people define similarity

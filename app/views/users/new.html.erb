@@ -1,19 +1,102 @@
-<%# @TODO add role %>
-<%# @TODO formatting %>
-<%# @TODO add glyphs %>
-<% title 'New user form' %>
+<% title(t :new_user_form) %>
 <div class="page-header">
   <h1><%= yield :title %></h1>
 </div>
-<%= form_for @user, url: new_user_path do |f| %>
-  <%= f.email_field :email, placeholder: 'e-mail (it will be never shared)' %>
-  <%= f.password_field :password, placeholder: 'password' %>
-  <%= f.password_field :password_confirmation, placeholder: 'password (repeated)' %>
-  <%= f.text_field :first_name, placeholder: 'first name (optional)' %>
-  <%= f.text_field :last_name, placeholder: 'last name (optional)' %>
-  <%= f.text_field :nickname, placeholder: 'nickname (optional)' %>
-  <%= f.check_box :inc_in_thesis, checked: true %> Include user in acknowledgments (full name if provided, nickname otherwise)
-  <%= f.check_box :inc_in_rankings, checked: true %> Include user in contributors ranking
-  <%= f.check_box :use_full_name, checked: false %> Display full name in rankings (if provided)
-  <%= f.button glyph_tag('plus', 'Create'), type: :submit, class: 'btn btn-warning' %>
+<%= form_for @user, url: new_user_path, html: {class: 'form-horizontal', role: 'form'} do |f| %>
+    <div class="<%= form_group_class_for(@user, :email)%>">
+      <%= f.label :email, class: 'control-label col-md-3' %>
+      <div class="col-md-6">
+        <%= f.email_field :email, value: @user.email, placeholder: t(:enter_email), class: 'form-control' %>
+        <%= list_errors_for(@user, :email) %>
+      </div>
+    </div>
+    <div class="<%= form_group_class_for(@user, :password, :no_success_ind)%>">
+      <%= f.label :password, class: 'control-label col-md-3' %>
+      <div class="col-md-6">
+         <%= f.password_field :password, placeholder: t(:enter_new_password), class: 'form-control' %>
+         <%= list_errors_for(@user, :password, :no_success_ind) %>
+      </div>
+    </div>
+    <div class="<%= form_group_class_for(@user, :password_confirmation, :no_success_ind)%>">
+      <%= f.label :password_confirmation, class: 'control-label col-md-3' %>
+      <div class="col-md-6">
+        <%= f.password_field :password_confirmation, placeholder: t(:retype_new_password), class: 'form-control' %>
+        <%= list_errors_for(@user, :password_confirmation, :no_success_ind) %>
+      </div>
+    </div>
+    <div class="<%= form_group_class_for(@user, :role)%>">
+      <%= f.label :role, class: 'control-label col-md-3' %>
+      <div class="col-md-6">
+        <%= f.select :role, User.roles, {}, { class: 'form-control'} %>
+        <%= list_errors_for(@user, :role) %>
+      </div>
+    </div>
+    <div class="<%= form_group_class_for(@user, :first_name)%>">
+      <%= f.label :first_name, class: 'control-label col-md-3' %>
+      <div class="col-md-6">
+        <%= f.text_field :first_name, value: @user.first_name, placeholder: t(:enter_first_name), class: 'form-control' %>
+        <%= list_errors_for(@user, :first_name) %>
+      </div>
+    </div>
+    <div class="<%= form_group_class_for(@user, :last_name)%>">
+      <%= f.label :last_name, class: 'control-label col-md-3' %>
+      <div class="col-md-6">
+        <%= f.text_field :last_name, value: @user.last_name, placeholder: t(:enter_last_name), class: 'form-control' %>
+        <%= list_errors_for(@user, :last_name) %>
+      </div>
+    </div>
+    <div class="<%= form_group_class_for(@user, :nickname)%>">
+      <%= f.label :nickname, class: 'control-label col-md-3' %>
+      <div class="col-md-6">
+        <%= f.text_field :nickname, value: @user.nickname, placeholder: t(:enter_nickname), class: 'form-control' %>
+        <%= list_errors_for(@user, :nickname) %>
+      </div>
+    </div>
+    <div class="<%= form_group_class_for(@user, :incl_in_thesis)%>">
+      <div class="control-label col-md-3">
+        <p><strong><%= t :incl_me_in_ack_label %></strong></p>
+      </div>
+      <div class="col-md-6">
+        <div class="btn-group" data-toggle="buttons">
+          <label class="btn btn-default<%= ' active' if @user.incl_in_thesis? %>"><%= f.radio_button(:incl_in_thesis, true)%><%= t :yes_val %></label>
+          <label class="btn btn-default<%= ' active' if ! @user.incl_in_thesis? %>"><%= f.radio_button(:incl_in_thesis, false)%><%= t :no_val %></label>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <%= list_errors_for(@user, :incl_in_thesis) %>
+      </div>
+    </div>
+    <div class="<%= form_group_class_for(@user, :incl_in_rankings)%>">
+      <div class="control-label col-md-3">
+        <p><strong><%= t :incl_me_in_rankings %></strong></p>
+      </div>
+      <div class="col-md-6">
+        <div class="btn-group" data-toggle="buttons">
+          <label class="btn btn-default<%= ' active' if @user.incl_in_rankings? %>"><%= f.radio_button(:incl_in_rankings, true)%><%= t :yes_val %></label>
+          <label class="btn btn-default<%= ' active' if ! @user.incl_in_rankings? %>"><%= f.radio_button(:incl_in_rankings, false)%><%= t :no_val %></label>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <%= list_errors_for(@user, :incl_in_rankings) %>
+      </div>
+    </div>
+    <div class="<%= form_group_class_for(@user, :use_full_name)%>">
+      <div class="control-label col-md-3">
+        <p><strong><%= t :display_in_ranking %></strong></p>
+      </div>
+      <div class="col-md-6">
+        <div class="btn-group" data-toggle="buttons">
+          <label class="btn btn-default<%= ' active' if @user.use_full_name? %>"><%= f.radio_button(:use_full_name, true)%><%= t :full_name %></label>
+          <label class="btn btn-default<%= ' active' if ! @user.use_full_name? %>"><%= f.radio_button(:use_full_name, false)%><%= t :nickname %></label>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <%= list_errors_for(@user, :use_full_name) %>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-md-offset-3 col-md-6">
+        <%= f.button glyph_tag('plus', t(:create)), type: :submit, class: 'btn btn-primary' %>
+      </div>
+    </div>
 <% end %>
