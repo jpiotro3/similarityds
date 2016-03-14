@@ -3,85 +3,12 @@
   <h1><%= yield :title %></h1>
 </div>
 <%= form_for @user, url: profile_path, html: {class: 'form-horizontal', role: 'form'} do |f| %>
-    <div class="<%= form_group_class_for(@user, :email)%>">
-      <%= f.label :email, class: 'control-label col-md-3' %>
-      <div class="col-md-6">
-        <%= f.email_field :email, value: @user.email, placeholder: t(:enter_email), class: 'form-control' %>
-        <%= list_errors_for(@user, :email) %>
-        <p><%= t :it_wont_be_shared %></p>
-      </div>
-    </div>
-    <div class="<%= form_group_class_for(@user, :first_name)%>">
-      <%= f.label :first_name, class: 'control-label col-md-3' %>
-      <div class="col-md-6">
-        <%= f.text_field :first_name, value: @user.first_name, placeholder: t(:enter_first_name), class: 'form-control' %>
-        <%= list_errors_for(@user, :first_name) %>
-        <p><%= t :full_name_explanation %></p>
-      </div>
-    </div>
-    <div class="<%= form_group_class_for(@user, :last_name)%>">
-      <%= f.label :last_name, class: 'control-label col-md-3' %>
-      <div class="col-md-6">
-        <%= f.text_field :last_name, value: @user.last_name, placeholder: t(:enter_last_name), class: 'form-control' %>
-        <%= list_errors_for(@user, :last_name) %>
-        <p><%= t :full_name_explanation %></p>
-      </div>
-    </div>
-    <div class="<%= form_group_class_for(@user, :nickname)%>">
-      <%= f.label :nickname, class: 'control-label col-md-3' %>
-      <div class="col-md-6">
-        <%= f.text_field :nickname, value: @user.nickname, placeholder: t(:enter_nickname), class: 'form-control' %>
-        <%= list_errors_for(@user, :nickname) %>
-        <p><%= t :nickname_explanation %></p>
-      </div>
-    </div>
-    <div class="<%= form_group_class_for(@user, :incl_in_thesis)%>">
-      <div class="control-label col-md-3">
-        <p><strong><%= t :incl_me_in_ack_label %></strong></p>
-      </div>
-      <div class="col-md-6">
-        <div class="btn-group" data-toggle="buttons">
-          <label class="btn btn-default<%= ' active' if @user.incl_in_thesis? %>"><%= f.radio_button(:incl_in_thesis, true)%><%= t :yes_val %></label>
-          <label class="btn btn-default<%= ' active' if ! @user.incl_in_thesis? %>"><%= f.radio_button(:incl_in_thesis, false)%><%= t :no_val %></label>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <%= list_errors_for(@user, :incl_in_thesis) %>
-        <p><%= t :incl_in_thesis_explanation %></p>
-      </div>
-    </div>
-    <div class="<%= form_group_class_for(@user, :incl_in_rankings)%>">
-      <div class="control-label col-md-3">
-        <p><strong><%= t :incl_me_in_rankings %></strong></p>
-      </div>
-      <div class="col-md-6">
-        <div class="btn-group" data-toggle="buttons">
-          <label class="btn btn-default<%= ' active' if @user.incl_in_rankings? %>"><%= f.radio_button(:incl_in_rankings, true)%><%= t :yes_val %></label>
-          <label class="btn btn-default<%= ' active' if ! @user.incl_in_rankings? %>"><%= f.radio_button(:incl_in_rankings, false)%><%= t :no_val %></label>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <%= list_errors_for(@user, :incl_in_rankings) %>
-        <p><%= t :incl_in_rankings_explanation %></p>
-      </div>
-    </div>
-    <div class="<%= form_group_class_for(@user, :use_full_name)%>">
-      <div class="control-label col-md-3">
-        <p><strong><%= t :display_in_ranking %></strong></p>
-      </div>
-      <div class="col-md-6">
-        <div class="btn-group" data-toggle="buttons">
-          <label class="btn btn-default<%= ' active' if @user.use_full_name? %>"><%= f.radio_button(:use_full_name, true)%><%= t :full_name %></label>
-          <label class="btn btn-default<%= ' active' if ! @user.use_full_name? %>"><%= f.radio_button(:use_full_name, false)%><%= t :nickname %></label>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <%= list_errors_for(@user, :use_full_name) %>
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="col-md-offset-3 col-md-6">
-        <%= f.button glyph_tag('save', t(:save)), type: :submit, class: 'btn btn-primary' %>
-      </div>
-    </div>
+    <%= form_email_field(f, @user, :email, :enter_email, :it_wont_be_shared) %>
+    <%= form_text_field(f, @user, :first_name, :enter_first_name, :full_name_explanation) %>
+    <%= form_text_field(f, @user, :last_name, :enter_last_name, :full_name_explanation) %>
+    <%= form_text_field(f, @user, :nickname, :enter_nickname, :nickname_explanation) %>
+    <%= form_toggle_field(f, @user, :incl_in_thesis, :incl_me_in_ack_label, :yes_val, :no_val, :incl_in_thesis_explanation) %>
+    <%= form_toggle_field(f, @user, :incl_in_rankings, :incl_me_in_rankings, :yes_val, :no_val, :incl_in_rankings_explanation) %>
+    <%= form_toggle_field(f, @user, :use_full_name, :display_in_ranking, :full_name, :nickname) %>
+    <%= form_submit(f, glyph_tag('save', t(:save))) %>
 <% end %>

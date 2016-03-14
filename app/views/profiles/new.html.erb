@@ -5,31 +5,8 @@
 <h2><%= t :why_register_heading %></h2>
 <p><%= t :why_register %></p>
 <%= form_for @user, url: profile_path, html: {class: 'form-horizontal', role: 'form'} do |f| %>
-    <div class="<%= form_group_class_for(@user, :email)%>">
-      <%= f.label :email, class: 'control-label col-md-3' %>
-      <div class="col-md-6">
-        <%= f.email_field :email, value: @user.email, placeholder: t(:enter_email), class: 'form-control' %>
-        <%= list_errors_for(@user, :email) %>
-        <p><%= t :it_wont_be_shared %></p>
-      </div>
-    </div>
-    <div class="<%= form_group_class_for(@user, :password)%>">
-      <%= f.label :password, class: 'control-label col-md-3' %>
-      <div class="col-md-6">
-        <%= f.password_field :password, placeholder: t(:enter_password), class: 'form-control' %>
-        <%= list_errors_for(@user, :password) %>
-      </div>
-    </div>
-    <div class="<%= form_group_class_for(@user, :password_confirmation)%>">
-      <%= f.label :password_confirmation, class: 'control-label col-md-3' %>
-      <div class="col-md-6">
-        <%= f.password_field :password_confirmation, placeholder: t(:retype_password), class: 'form-control' %>
-        <%= list_errors_for(@user, :password_confirmation) %>
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="col-md-offset-3 col-md-6">
-        <%= f.button t(:register), type: :submit, class: 'btn btn-primary' %>
-      </div>
-    </div>
+  <%= form_email_field(f, @user, :email, :enter_email, :it_wont_be_shared) %>
+  <%= form_password_field(f, @user, :password, :enter_password) %>
+  <%= form_password_field(f, @user, :password_confirmation, :retype_password) %>
+  <%= form_submit(f, t(:register)) %>
 <% end %>

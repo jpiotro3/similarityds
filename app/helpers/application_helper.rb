@@ -35,6 +35,80 @@ module ApplicationHelper
     end
   end
 
+  def form_email_field(form, obj, param, placeholder, explanation = nil, success_ind = :show_success_ind)
+    content_tag(:div, class: form_group_class_for(obj, param, success_ind)) do
+      form.label(param, class: 'control-label col-md-3') +
+          content_tag(:div, class: 'col-md-6') do
+            output = form.email_field(param, value: obj.attributes[param], placeholder: t(placeholder), class: 'form-control')
+            output += list_errors_for(obj, param)
+            unless explanation.nil? then output += content_tag(:p, t(explanation)) end
+            output.html_safe
+          end
+    end
+  end
+
+  def form_password_field(form, obj, param, placeholder, explanation = nil, success_ind = :show_success_ind)
+    content_tag(:div, class: form_group_class_for(obj, param, success_ind)) do
+      form.label(param, class: 'control-label col-md-3') +
+          content_tag(:div, class: 'col-md-6') do
+            output = form.password_field(param, value: obj.attributes[param], placeholder: t(placeholder), class: 'form-control')
+            output += list_errors_for(obj, param)
+            unless explanation.nil? then output += content_tag(:p, t(explanation)) end
+            output.html_safe
+          end
+    end
+  end
+
+  def form_submit(form, label)
+    content_tag(:div, class: 'form-group') do
+      content_tag(:div, class: 'col-md-offset-3 col-md-6') do
+        form.button label, type: :submit, class: 'btn btn-primary'
+      end
+    end
+  end
+
+  def form_text_field(form, obj, param, placeholder, explanation = nil, success_ind = :show_success_ind)
+    content_tag(:div, class: form_group_class_for(obj, param, success_ind)) do
+      form.label(param, class: 'control-label col-md-3') +
+      content_tag(:div, class: 'col-md-6') do
+        output = form.text_field(param, value: obj.attributes[param], placeholder: t(placeholder), class: 'form-control')
+        output += list_errors_for(obj, param)
+        unless explanation.nil? then output += content_tag(:p, t(explanation)) end
+        output.html_safe
+      end
+    end
+  end
+
+  def form_toggle_field(form, obj, param, label, yes_val, no_val, explanation = nil)
+    yes_class = 'btn btn-default' + (if obj.attributes[param] then ' active' else '' end)
+    no_class  = 'btn btn-default' + (unless obj.attributes[param] then ' active' else '' end)
+
+    content_tag(:div, class: form_group_class_for(obj, param)) do
+      content_tag(:div, class: 'control-label col-md-3') do
+        content_tag(:p) do
+          content_tag(:strong) do
+            t(label)
+          end
+        end
+      end +
+      content_tag(:div, class: 'col-md-6') do
+        content_tag(:div, :class => 'btn-group', :'data-toggle' => 'buttons') do
+          content_tag(:label, class: yes_class) do
+            form.radio_button(param, true) + t(yes_val)
+          end +
+          content_tag(:label, class: no_class) do
+            form.radio_button(param, false) + t(no_val)
+          end
+        end
+      end +
+      content_tag(:div, class: 'col-md-6') do
+        output = list_errors_for(obj, param)
+        unless explanation.nil? then output += content_tag(:p, t(explanation)) end
+        output.html_safe
+      end
+    end
+  end
+
   def glyph_tag(name, text = '')
     tag = ''
     unless name.nil? or name.empty?

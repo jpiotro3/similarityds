@@ -24,9 +24,6 @@ class ProfilesController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    @user.incl_in_thesis   = false
-    @user.incl_in_rankings = false
-    @user.use_full_name    = false
     if @user.save
       reset_session
       session[:user_id] = @user.id
